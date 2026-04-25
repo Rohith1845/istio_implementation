@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: catalogue
+  namespace: roboshop
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - roboshop-gateway
+  http:
+    - route:
+        - destination:
+            host: catalogue
+            subset: v1
+          weight: 80
+        - destination:
+            host: catalogue
+            subset: v2
+          weight: 20
+
+              
